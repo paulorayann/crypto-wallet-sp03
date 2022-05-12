@@ -1,10 +1,12 @@
 const express = require('express')
-const routes = require('./routes')
+const bodyParser = require('body-parser')
 
 const app = express()
+
+app.use(bodyParser.json())
 const port = 3000
 
-routes(app)
+app.get('/test'), (req, res) => res.status(200).send({message: 'Welcome to Wallet Crypto API'})
 
 app.listen(port, () => console.log(`Running in port ${port}`))
 
