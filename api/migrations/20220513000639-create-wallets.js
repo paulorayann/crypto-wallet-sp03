@@ -5,6 +5,7 @@ module.exports = {
       address: {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4,
+        unique: true,
         primaryKey: true,
         type: Sequelize.UUID
       },
