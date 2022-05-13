@@ -29,6 +29,16 @@ class WalletsController {
             return res.status(500).json(error.message)
         }
     }
+    static async deleteWallet(req, res) {
+        const { address } = req.params
+        try {
+            await database.Wallets.destroy({where: { address:Number(address) }})
+            return res.status(204).json({message: `address ${address} was successfully deleted`})
+        } catch(error){
+            return res.status(404).json(error.message)
+        }
+
+    }
 
 }
 
