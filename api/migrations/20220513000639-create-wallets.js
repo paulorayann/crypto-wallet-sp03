@@ -1,13 +1,16 @@
+const { v4: uuidv4 } = require('uuid');
+const wallets = require('../models/wallets');
+
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Wallets', {
       address: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: Sequelize.UUIDV4,
-        unique: true,
         primaryKey: true,
-        type: Sequelize.UUID
+        autoIncrement: true,
+        
       },
       name: {
         type: Sequelize.STRING
@@ -27,6 +30,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Wallets');
