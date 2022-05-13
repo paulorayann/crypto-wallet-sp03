@@ -10,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-    }
+      // Wallets.hasMany(models.Coins, {
+      //   foreignKey: 'walletCoins'
+      // })
+      // Wallets.hasMany(models.Transactions,{
+      //   foreignKey: 'walletTrans'
+      // })
+  }
   }
   Wallets.init({
     address: {
@@ -26,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Wallets',
-  });
+  })
+
   return Wallets;
 };
