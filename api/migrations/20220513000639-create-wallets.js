@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+
 const wallets = require('../models/wallets');
 
 'use strict';
@@ -6,10 +6,10 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Wallets', {
       address: {
-        type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
         autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
         
       },
       name: {
