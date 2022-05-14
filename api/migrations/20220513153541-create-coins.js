@@ -2,7 +2,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Coins', {
-      idCoin: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -13,16 +13,12 @@ module.exports = {
         autoIncrement: false,
         type: Sequelize.STRING
       },
-      // walletCoins:{
-      //   allowNull: false,
-      //   type: Sequelize.STRING,
-      //   references: { model: 'Wallets', key: 'id' }
-      // },
-      // transCoins:{
-      //   allowNull: false,
-      //   type: Sequelize.STRING,
-      //   references: { model: 'Transactions', key: 'id' }
-      // },
+      walletAddress: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Wallets', key: 'address' }
+        },
+
       fullname: {
         type: Sequelize.STRING
       },

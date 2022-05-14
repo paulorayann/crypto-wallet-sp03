@@ -11,16 +11,13 @@ module.exports = {
       value: {
         type: Sequelize.DOUBLE
       },
-      // walletTrans:{
-      //   allowNull: false,
-      //   type: Sequelize.STRING,
-      //   references: { model: 'Wallets', key: 'address' }
-      // },
-      // coinTrans:{
-      //   allowNull: false,
-      //   type: Sequelize.STRING,
-      //   references: { model: 'Coins', key: 'idTransaction' }
-      // },
+
+      coinId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      references: { model: 'Coins', key: 'id' }
+      },
+
       datetime: {
         type: Sequelize.DATE
       },
