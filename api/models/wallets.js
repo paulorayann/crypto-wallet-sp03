@@ -1,6 +1,8 @@
+const moment = require("moment");
+
 'use strict';
 const {
-  Model
+  Model, NOW
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Wallets extends Model {
@@ -25,13 +27,42 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    name: DataTypes.STRING,
-    cpf: DataTypes.STRING,
-    birthDate: DataTypes.DATEONLY
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+      notEmpty: true,
+      len:{args: [ 7 ],
+      msg: 'Name must have at least 7 characters'}
+    }
+    },
+    
+    cpf: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: true,
+        validCPF: function(value) {
+          if (!/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(value)){
+            throw new Error('CPF must be valid')
+          }
+        }
+      }
+    },
+    birthDate: {
+      type: DataTypes.DATEONLY,
+      validate: {
+        notEmpty: true,
+        isDate: true,
+        isBefore:"2004-01-01",
+        validAge() {
+          moment(Wallets.birthDate, "DD/MM/YYYY").format("YYYY-MM-DD")},
+      }
+    }
   }, {
     sequelize,
     modelName: 'Wallets',
   })
-
   return Wallets;
 };
