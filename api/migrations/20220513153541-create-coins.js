@@ -13,11 +13,11 @@ module.exports = {
         autoIncrement: false,
         type: Sequelize.STRING
       },
-      walletAddress: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'Wallets', key: 'address' }
-        },
+      // walletAddress: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER,
+      //   references: { model: 'Wallets', key: 'address' }
+      //   },
 
       fullname: {
         type: Sequelize.STRING

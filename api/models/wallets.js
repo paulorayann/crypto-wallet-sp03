@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       // Wallets.hasMany(models.Transactions,{
       //   foreignKey: 'walletTrans'
       // })
-  }
+
+      }
+  
   }
   Wallets.init({
     address: {
@@ -27,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
+    
     name: {
       type: DataTypes.STRING,
       allowNull: false,

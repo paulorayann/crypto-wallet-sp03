@@ -12,11 +12,11 @@ module.exports = {
         type: Sequelize.DOUBLE
       },
 
-      coinId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      references: { model: 'Coins', key: 'id' }
-      },
+      // coinId: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER,
+      // references: { model: 'Coins', key: 'id' }
+      // },
 
       datetime: {
         type: Sequelize.DATE
