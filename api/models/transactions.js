@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     currentCotation: DataTypes.DOUBLE
   }, {
     sequelize,
+    timestamps: false,
     modelName: 'Transactions',
   });
   return Transactions;

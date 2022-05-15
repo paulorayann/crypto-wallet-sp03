@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     amount: DataTypes.FLOAT
   }, {
     sequelize,
+    timestamps: false,
     modelName: 'Coins',
   });
   return Coins;
