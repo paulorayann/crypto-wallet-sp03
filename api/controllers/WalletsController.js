@@ -14,7 +14,7 @@ class WalletsController {
     static async getWalletByAddress (req, res) {
         const { address } = req.params
         try {
-            const byAddress = await database.Wallets.findOne( {where: { address:Number(address) }})
+            const byAddress = await database.Wallets.findByPk(address, {include: [database.Coins, database.Transactions]})
             return res.status(200).json(byAddress)
         } catch (error) {
             return res.status(404).json(error.message)
