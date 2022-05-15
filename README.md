@@ -32,3 +32,10 @@ $ npm start
 
 
 
+## Routes
+
+- POST http://localhost:3000/api/v1/wallet
+- GET http://localhost:3000/api/v1/wallet
+- GET by Address http://localhost:3000/api/v1/wallet/:address
+- DELETE http://localhost:3000/api/v1/wallet/:address
+
