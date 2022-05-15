@@ -3,7 +3,7 @@ const database = require('../models')
 class WalletsController {
    static async getAllWallets(req, res) {
        try{
-        const allWallets = await database.Wallets.findAll()
+        const allWallets = await database.Wallets.findAll({include: [database.Coins, database.Transactions] })
         return res.status(200).json(allWallets)
        } catch (error) {
            return res.status(500).json(error.message)
