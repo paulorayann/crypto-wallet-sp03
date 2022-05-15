@@ -6,18 +6,22 @@ class WalletsController {
         const allWallets = await database.Wallets.findAll({include: [database.Coins, database.Transactions] })
         return res.status(200).json(allWallets)
        } catch (error) {
-           return res.status(500).json(error.message)
+           return res.status(404).json(error.message)
        }
     }
 
 
-    static async getWalletByAddress (req, res) {
+    static async getWalletByAddress (req, res, error) {
         const { address } = req.params
         try {
             const byAddress = await database.Wallets.findByPk(address, {include: [database.Coins, database.Transactions]})
-            return res.status(200).json(byAddress)
-        } catch (error) {
-            return res.status(404).json(error.message)
+            if (byAddress == null) {
+                    res.status(404).json({message: `The address '${address}' is not in the database` })
+                } else {
+                    return res.status(200).json(byAddress)
+                }
+               } catch (error) {
+            return res.status(500).json(error.message)
         }
     }
     static async createWallet(req, res) {
@@ -31,6 +35,7 @@ class WalletsController {
     }
     static async deleteWallet(req, res) {
         const { address } = req.params
+    
         try {
             await database.Wallets.destroy({where: { address:Number(address) }})
             return res.status(204).json({message: `address ${address} was successfully deleted`})
